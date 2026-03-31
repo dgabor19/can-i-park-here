@@ -45,7 +45,7 @@ export default function AddPlayerModal({ onClose, onPlayerAdded }: AddPlayerModa
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
         <div className="bg-gradient-to-r from-yellow-400 to-orange-400 px-6 py-4 flex items-center justify-between">
           <h2 className="text-white text-xl font-extrabold">➕ Add a New Player!</h2>
           <button
@@ -64,7 +64,7 @@ export default function AddPlayerModal({ onClose, onPlayerAdded }: AddPlayerModa
               <p className="text-lg font-extrabold text-green-600">
                 {successPlayer.name} was added!
               </p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 {successPlayer.nationality} {successPlayer.position} born in {successPlayer.born}
               </p>
               <button
@@ -76,11 +76,11 @@ export default function AddPlayerModal({ onClose, onPlayerAdded }: AddPlayerModa
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 dark:text-gray-300">
                 Tell me about a player and I'll add them to the list!
               </p>
               <textarea
-                className="rounded-2xl border-2 border-gray-200 focus:border-yellow-400 outline-none p-4 text-sm resize-none transition-colors"
+                className="rounded-2xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:border-yellow-400 outline-none p-4 text-sm resize-none transition-colors"
                 rows={4}
                 placeholder="For example: 'Add Pedri, he's Spanish, plays for Barcelona, he's a midfielder born in 2002 and he's known for his amazing passing'"
                 value={text}

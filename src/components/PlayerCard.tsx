@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Player } from '@/types';
 
 interface PlayerCardProps {
@@ -50,10 +51,20 @@ export default function PlayerCard({ player, index }: PlayerCardProps) {
   const initials = getInitials(player.name);
 
   return (
-    <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200 bg-white">
+    <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200 bg-white dark:bg-gray-800">
       <div className={`bg-gradient-to-br ${gradient} p-6 flex flex-col items-center`}>
-        <div className="w-20 h-20 rounded-full bg-white/30 flex items-center justify-center text-white text-2xl font-extrabold shadow-inner mb-3">
-          {initials}
+        <div className="w-20 h-20 rounded-full bg-white/30 overflow-hidden flex items-center justify-center text-white text-2xl font-extrabold shadow-inner mb-3">
+          {player.photoUrl ? (
+            <Image
+              src={player.photoUrl}
+              alt={player.name}
+              width={80}
+              height={80}
+              className="w-full h-full object-cover object-top"
+            />
+          ) : (
+            initials
+          )}
         </div>
         <h2 className="text-white text-xl font-extrabold text-center leading-tight drop-shadow">
           {player.name}
@@ -66,16 +77,16 @@ export default function PlayerCard({ player, index }: PlayerCardProps) {
           <span className={`${positionColor} text-white text-xs font-bold px-3 py-1 rounded-full`}>
             {player.position}
           </span>
-          <span className="bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
+          <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-xs font-semibold px-3 py-1 rounded-full">
             ⚽ {player.club}
           </span>
-          <span className="bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
+          <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-xs font-semibold px-3 py-1 rounded-full">
             Born {player.born}
           </span>
         </div>
 
-        <div className="bg-yellow-100 border-l-4 border-yellow-400 rounded-xl p-3">
-          <p className="text-yellow-900 text-sm font-medium leading-snug">
+        <div className="bg-yellow-100 dark:bg-yellow-900/30 border-l-4 border-yellow-400 rounded-xl p-3">
+          <p className="text-yellow-900 dark:text-yellow-300 text-sm font-medium leading-snug">
             ⭐ {player.funFact}
           </p>
         </div>
