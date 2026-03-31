@@ -2,7 +2,21 @@
   "permissions": {
     "allow": [
       "Bash(npx:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Skill(claude-api)",
+      "Bash(npm install:*)",
+      "Bash(ls:*)",
+      "Bash(rm \"/Users/gabor/dev/can-i-park-here/src/app/player/[id]/page.tsx\")",
+      "Bash(rmdir \"/Users/gabor/dev/can-i-park-here/src/app/player/[id]\")",
+      "Bash(printf:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(node -e \"require\\(''''./src/lib/players''''\\)\")",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -s http://localhost:3002)",
+      "Bash(node -e \":*)",
+      "Bash(pkill -f next)",
+      "Bash(kill -9 80117 83042 83113)",
+      "Bash(curl:*)"
     ]
   }
 }

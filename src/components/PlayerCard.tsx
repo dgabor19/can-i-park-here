@@ -1,65 +1,85 @@
-import Image from "next/image";
-import Link from "next/link";
-import { CuratedPlayer, SportsDBPlayer } from "@/types";
+import { Player } from '@/types';
 
 interface PlayerCardProps {
-  curated: CuratedPlayer;
-  sportsdb: SportsDBPlayer | null;
+  player: Player;
+  index: number;
 }
 
 const FLAG_EMOJIS: Record<string, string> = {
-  Portugal: "🇵🇹",
-  Argentina: "🇦🇷",
-  England: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-  France: "🇫🇷",
-  Brazil: "🇧🇷",
+  Portuguese: '🇵🇹',
+  Argentine: '🇦🇷',
+  English: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+  French: '🇫🇷',
+  Brazilian: '🇧🇷',
+  Norwegian: '🇳🇴',
+  Spanish: '🇪🇸',
+  German: '🇩🇪',
+  Italian: '🇮🇹',
+  Dutch: '🇳🇱',
 };
 
-export default function PlayerCard({ curated, sportsdb }: PlayerCardProps) {
-  const imageUrl = sportsdb?.strThumb || sportsdb?.strCutout || null;
-  const club = sportsdb?.strTeam ?? "Retired";
-  const flag = FLAG_EMOJIS[curated.nationality] ?? "";
-  const kidCount = curated.kids.length;
+const CARD_GRADIENTS = [
+  'from-green-400 to-green-600',
+  'from-blue-400 to-blue-600',
+  'from-yellow-400 to-orange-500',
+  'from-purple-400 to-purple-600',
+  'from-pink-400 to-rose-500',
+  'from-teal-400 to-cyan-500',
+];
+
+const POSITION_COLORS: Record<string, string> = {
+  Forward: 'bg-red-500',
+  Midfielder: 'bg-blue-500',
+  Defender: 'bg-green-600',
+  Goalkeeper: 'bg-yellow-500',
+};
+
+function getInitials(name: string): string {
+  return name
+    .split(' ')
+    .map((part) => part[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase();
+}
+
+export default function PlayerCard({ player, index }: PlayerCardProps) {
+  const gradient = CARD_GRADIENTS[index % CARD_GRADIENTS.length];
+  const flag = FLAG_EMOJIS[player.nationality] ?? '🌍';
+  const positionColor = POSITION_COLORS[player.position] ?? 'bg-gray-500';
+  const initials = getInitials(player.name);
 
   return (
-    <Link
-      href={`/player/${curated.id}`}
-      className="group block rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-md hover:border-green-400 dark:hover:border-green-500 transition-all duration-200"
-    >
-      <div className="relative w-full aspect-[3/2] bg-gradient-to-br from-green-50 to-green-100 dark:from-zinc-800 dark:to-zinc-700 overflow-hidden">
-        {imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt={curated.name}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-6xl">⚽</span>
-          </div>
-        )}
-        <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-          {kidCount === 0
-            ? "No kids"
-            : `${kidCount} kid${kidCount !== 1 ? "s" : ""}`}
+    <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200 bg-white">
+      <div className={`bg-gradient-to-br ${gradient} p-6 flex flex-col items-center`}>
+        <div className="w-20 h-20 rounded-full bg-white/30 flex items-center justify-center text-white text-2xl font-extrabold shadow-inner mb-3">
+          {initials}
         </div>
+        <h2 className="text-white text-xl font-extrabold text-center leading-tight drop-shadow">
+          {player.name}
+        </h2>
+        <p className="text-white/90 text-sm mt-1">{flag} {player.nationality}</p>
       </div>
 
-      <div className="p-4">
-        <h2 className="font-bold text-base text-zinc-900 dark:text-zinc-50 leading-tight truncate group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
-          {curated.name}
-        </h2>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 truncate">
-          {flag} {curated.nationality}
-        </p>
-        {club && (
-          <p className="text-xs text-zinc-400 dark:text-zinc-500 mt-0.5 truncate">
-            {club}
+      <div className="p-4 flex flex-col gap-3">
+        <div className="flex flex-wrap gap-2">
+          <span className={`${positionColor} text-white text-xs font-bold px-3 py-1 rounded-full`}>
+            {player.position}
+          </span>
+          <span className="bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
+            ⚽ {player.club}
+          </span>
+          <span className="bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
+            Born {player.born}
+          </span>
+        </div>
+
+        <div className="bg-yellow-100 border-l-4 border-yellow-400 rounded-xl p-3">
+          <p className="text-yellow-900 text-sm font-medium leading-snug">
+            ⭐ {player.funFact}
           </p>
-        )}
+        </div>
       </div>
-    </Link>
+    </div>
   );
 }

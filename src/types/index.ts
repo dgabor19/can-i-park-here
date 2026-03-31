@@ -1,37 +1,15 @@
-export interface Kid {
-  name: string;
-  birthYear?: number;
-  note?: string;
-}
-
-export interface CuratedPlayer {
+export interface Player {
   id: string;
   name: string;
-  searchName: string;
   nationality: string;
-  kids: Kid[];
+  club: string;
+  position: string;
+  born: number;
+  funFact: string;
+  photoUrl?: string;
 }
 
-export interface SportsDBPlayer {
-  idPlayer: string;
-  strPlayer: string;
-  strTeam: string;
-  strNationality: string;
-  strPosition: string;
-  strThumb: string;
-  strCutout: string;
-  strDescriptionEN: string;
-  strBirthLocation: string;
-  dateBorn: string;
-  strNumber: string;
-  strHeight: string;
-  strWeight: string;
-  strSport: string;
-  strFanart1?: string;
-  strBanner?: string;
-}
-
-export interface PlayerWithKids {
-  curated: CuratedPlayer;
-  sportsdb: SportsDBPlayer | null;
+export interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
 }

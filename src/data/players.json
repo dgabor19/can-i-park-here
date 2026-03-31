@@ -1,0 +1,12 @@
+[
+  { "id": "ronaldo", "name": "Cristiano Ronaldo", "nationality": "Portuguese", "club": "Al Nassr", "position": "Forward", "born": 1985, "funFact": "He has scored over 800 career goals!" },
+  { "id": "messi", "name": "Lionel Messi", "nationality": "Argentine", "club": "Inter Miami", "position": "Forward", "born": 1987, "funFact": "He won the World Cup with Argentina in 2022!" },
+  { "id": "beckham", "name": "David Beckham", "nationality": "English", "club": "Retired", "position": "Midfielder", "born": 1975, "funFact": "He was famous for his amazing free kicks!" },
+  { "id": "zidane", "name": "Zinedine Zidane", "nationality": "French", "club": "Retired", "position": "Midfielder", "born": 1972, "funFact": "He led France to win the World Cup in 1998!" },
+  { "id": "neymar", "name": "Neymar Jr.", "nationality": "Brazilian", "club": "Al Hilal", "position": "Forward", "born": 1992, "funFact": "He is one of the fastest dribblers in football history!" },
+  { "id": "haaland", "name": "Erling Haaland", "nationality": "Norwegian", "club": "Manchester City", "position": "Forward", "born": 2000, "funFact": "He scored 36 Premier League goals in his first season!" },
+  { "id": "mbappe", "name": "Kylian Mbappé", "nationality": "French", "club": "Real Madrid", "position": "Forward", "born": 1998, "funFact": "He became a World Cup winner at just 19 years old!" },
+  { "id": "rooney", "name": "Wayne Rooney", "nationality": "English", "club": "Retired", "position": "Forward", "born": 1985, "funFact": "He is Manchester United's all-time top scorer!" },
+  { "id": "roberto-carlos", "name": "Roberto Carlos", "nationality": "Brazilian", "club": "Retired", "position": "Defender", "born": 1973, "funFact": "He scored one of the most amazing free kicks ever in 1997!" },
+  { "id": "ronaldinho", "name": "Ronaldinho", "nationality": "Brazilian", "club": "Retired", "position": "Midfielder", "born": 1980, "funFact": "He could do incredible tricks and was loved by fans everywhere!" }
+]
